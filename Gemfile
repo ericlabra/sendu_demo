@@ -38,15 +38,17 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'redis', '~> 4.0'
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '5.1.2'
   gem 'rubocop', '1.33.0', require: false
   gem 'rubocop-performance', '1.15.0', require: false
   gem 'rubocop-rails', '2.17.4', require: false
   gem 'rubocop-rspec', '2.16.0', require: false
-  gem 'rspec-rails', '5.1.2'
 end
 
 group :development do
