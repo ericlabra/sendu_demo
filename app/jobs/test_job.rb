@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Test job to verify Sidekiq is working
-class TestJob < ApplicationJob
-  queue_as :default
+class TestJob
+  include Sidekiq::Job
 
   def perform(*_args)
     Rails.logger.info 'Job ejecutado!'

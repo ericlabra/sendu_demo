@@ -3,5 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe TestJob do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'ejecuta el job correctamente' do
+    described_class.perform_async
+    expect(described_class.jobs.size).to eq(1)
+  end
 end
