@@ -2,6 +2,32 @@
 
 A Dockerized Ruby on Rails environment.
 
+# Search Pokemon
+
+The app has a search feature that allows users to search for Pokemon by name.
+
+The search is implemented in the `Pokemon` model using the `search` concern.
+
+The search is case-insensitive and prioritizes the local database. If a match is not found locally, it is fetched from an external API and persisted for future use.
+
+If no match is found in either the database or the API, an error message is returned.
+
+example:
+
+## Success case
+```ruby
+Pokemon.search("pikachu")
+
+# output:  #<Pokemon id: 1, name: "pikachu", weight: 60, height: 4, created_at: "2026-03-04 20:46:41", updated_at: "2026-03-04 20:46:41">
+```
+## Error case
+```ruby
+Pokemon.search("Pikache")
+
+# output:  Error: Pokemon pikache not found
+```
+
+
 ## Stack
 
 | Component | Version |
