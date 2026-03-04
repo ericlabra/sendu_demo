@@ -11,27 +11,23 @@ RSpec.describe Search, type: :model do
     let!(:raichu)  { Pokemon.create!(name: 'raichu', weight: 300, height: 8) }
 
     it 'includes the matched record' do
-      expect(Pokemon.find_by_name('pikachu')).to include(pikachu)
+      expect(Pokemon.find_by_name('pikachu')).to eq(pikachu)
     end
 
     it 'excludes non-matching records' do
-      expect(Pokemon.find_by_name('pikachu')).not_to include(raichu)
+      expect(Pokemon.find_by_name('pikachu')).not_to eq(raichu)
     end
 
     it 'is case-insensitive' do
-      expect(Pokemon.find_by_name('PIKACHU')).to include(pikachu)
+      expect(Pokemon.find_by_name('PIKACHU')).to eq(pikachu)
     end
 
-    it 'supports partial matches – pikachu' do
-      expect(Pokemon.find_by_name('chu')).to include(pikachu)
-    end
-
-    it 'supports partial matches – raichu' do
-      expect(Pokemon.find_by_name('chu')).to include(raichu)
+    it 'does not support partial matches' do
+      expect(Pokemon.find_by_name('chu')).not_to eq(pikachu)
     end
 
     it 'returns an empty collection when nothing matches' do
-      expect(Pokemon.find_by_name('mewtwo')).to be_empty
+      expect(Pokemon.find_by_name('mewtwo')).to be_nil
     end
   end
 

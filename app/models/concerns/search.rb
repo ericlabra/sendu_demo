@@ -5,7 +5,7 @@ module Search
   included do
     def self.find_by_name(query)
       query = query.downcase
-      where("name LIKE ?", "%#{query}%")
+      where("name = ?", query).first
     end
 
     def self.request_pokemon_api(query)
